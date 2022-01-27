@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
 router.get("/:email", async (req, res) => {
   try {
     const user = await User.find({ email: req.params.email });
-    res.status(200).json(user[0]);
+    res.status(200).json(user[0]?.isAdmin);
   } catch (err) {
     res.status(500).json({
       error: "there was a server side error",
