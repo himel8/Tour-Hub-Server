@@ -12,6 +12,10 @@ const OrderSchema = mongoose.Schema(
       type: String,
       default: "unpaid",
     },
+    action: {
+      type: String,
+      default: "pending",
+    },
   },
   { timestamps: true }
 );
