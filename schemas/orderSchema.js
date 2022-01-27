@@ -13,8 +13,8 @@ const OrderSchema = mongoose.Schema(
       default: "unpaid",
     },
     status: {
-      type: Text,
-      default: "pending",
+      type: String,
+      default: "ongoing",
     },
   },
   { timestamps: true }

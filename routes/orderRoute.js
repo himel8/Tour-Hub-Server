@@ -61,11 +61,12 @@ router.put("/:id", async (req, res) => {
 // update an order status by id
 router.put("/status/:id", async (req, res) => {
   try {
+    console.log(req.body);
     const updateOrder = await Order.updateOne(
       { _id: req.params.id },
       {
         $set: {
-          status: req.body,
+          status: "done",
         },
       }
     );
