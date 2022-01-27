@@ -27,6 +27,17 @@ router.get("/:id", async (req, res) => {
     });
   }
 });
+// get a service by id
+router.get("/price/:name", async (req, res) => {
+  try {
+    const oneService = await Service.find({ name: req.params.name });
+    res.status(200).json(oneService[0]?.price);
+  } catch (err) {
+    res.status(500).json({
+      error: "there was a server side error",
+    });
+  }
+});
 
 // post a service
 router.post("/", async (req, res) => {
