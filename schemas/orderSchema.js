@@ -12,7 +12,7 @@ const OrderSchema = mongoose.Schema(
       type: String,
       default: "unpaid",
     },
-    action: {
+    status: {
       type: String,
       default: "pending",
     },
