@@ -77,27 +77,24 @@ router.put("/register", async (req, res) => {
 /*------------------------
     upadte an admin role
 --------------------------*/
-router.put("/admin", async (req, res) => {
+router.put("/admin/:email", async (req, res) => {
   try {
-    const requester = req.decodeUser;
-    if (requester) {
-      const requesterAccount = await User.find({ email: requester });
-      console.log(requesterAccount[0].isAdmin);
-      if (requesterAccount[0].isAdmin === true) {
-        const updateUser = await User.updateOne(
-          { email: req.body.email },
-          {
-            $set: {
-              isAdmin: "true",
-            },
-          }
-        );
-        res.status(200).json(updateUser);
-      } else {
-        res.status(401).json({
-          message: "you dont have access to make admin",
-        });
-      }
+    const requesterAccount = await User.find({ email: req.params.email });
+    console.log(requesterAccount[0].isAdmin);
+    if (requesterAccount[0].isAdmin === true) {
+      const updateUser = await User.updateOne(
+        { email: req.body.email },
+        {
+          $set: {
+            isAdmin: "true",
+          },
+        }
+      );
+      res.status(200).json(updateUser);
+    } else {
+      res.status(401).json({
+        message: "you dont have access to make admin",
+      });
     }
   } catch (err) {
     if (err) {
